@@ -1,0 +1,61 @@
+//+ Font Styles +//
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap'); //! font-family: 'Dancing Script', cursive; // *Hand Writing
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Maps&display=swap'); //! font-family: 'Rubik Maps', system-ui; // * Writing include images to bg. -Icon or Sth.-
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap'); //! font-family: 'Press Start 2P', system-ui; // *2D Game Writing
+@import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap'); //! font-family: 'Tangerine', cursive; // *Hand Writing
+@import url('https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&display=swap'); //! font-family: 'Ballet', cursive; // *Hand Writing
+@import url('https://fonts.googleapis.com/css2?family=Bigelow+Rules&display=swap'); //! font-family: 'Bigelow Rules', serif; // *Vampire Style
+@import url('https://fonts.googleapis.com/css2?family=Ewert&display=swap'); //! font-family: 'Ewert', serif; // *American Style -Header-
+@import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&display=swap'); //! font-family: 'Sedgwick Ave Display', cursive; // *hip-pop -Header-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sedgwick+Ave+Display&display=swap'); //! font-family: 'Poppins', sans-serif; // * Normal writing -normal
+//+ Font Styles +//
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+//# optinal p property for first letter biggger and first row indent #//
+%first-letter-big
+{
+    &::first-letter
+    {           
+        font-size: calc(var(--medium-fs)*4);   
+    }
+}
+
+%text-indent
+{
+    text-indent: var(--medium-fs);
+}
+//# optinal p property for first letter biggger and first row indent #//
+
+
+html{
+    font-size:  10px;  // 1rem = 10px
+    color-scheme: dark light;
+
+    //responsive img/vids 
+    img, picture, svg, video
+    {
+        display: block;
+        max-width: 100%;
+        object-fit:cover;
+        object-position: center;
+    }
+
+    h1,h2,h3,h4,h5,h6
+    {
+        text-wrap: balance;
+    }
+
+    p
+    {
+        text-wrap: pretty;
+        padding: .5rem;
+    }
+}
+

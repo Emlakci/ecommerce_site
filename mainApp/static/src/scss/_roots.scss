@@ -1,0 +1,63 @@
+:root
+{
+    //? Backgrounds & Colors
+    --main-bg       : #112233;
+    --header-bg     : #0A141F;
+    --header-shadow : #00CED1;
+    --footer-bg     : #050A0F;
+    --text-header   : #33FFFF;
+    --text-paragraph: #000;
+    --text-footer   : #9E0059;
+    
+    //? Backgrounds & Colors
+    //? Font Sizes
+    --xsmall-fs : 1rem;
+    --small-fs  : 1.2rem; 
+    --medium-fs : 1.5rem; 
+    --large-fs  : 1.7rem;
+    --huge-fs   : 2rem;
+    --giant-fs  : 3rem; 
+    --xgiant-fs : 3.5rem; 
+    //? Font Sizes
+    //? Area Sizes
+    --header-h : 12.5rem;
+    --scale-factor : 1;
+    //? Area Sizes
+    //? Element Padding~Margins
+    --margin-lg : 0rem;
+    //? Element Padding~Margins
+
+
+    //+ MEDIA QUERIES +//
+    @media screen and (max-width : 768px) 
+    {
+        //? Font Sizes
+        --xsmall-fs : calc(1rem * .8);
+        --small-fs  : calc(1.2rem * .8); 
+        --medium-fs : calc(1.5rem * .8); 
+        --large-fs  : calc(1.7rem * .8);
+        --huge-fs   : calc(2rem * .8); 
+        --giant-fs  : calc(3rem * .8); 
+        --xgiant-fs : calc(3.5rem * .8); 
+        //? Font Sizes
+        //? Area Sizes
+        --header-h : calc(12.5rem * .8);
+        --scale-factor : .8;
+        //? Area Sizes
+        //? Element Padding~Margins
+        --margin-lg : -.3rem;
+        //? Element Padding~Margins
+    }  
+}
+
+
+
+
+
+
+
+
+
+//* MEDIA QUERIES -BREAK POINTS- FOR PAGE
+
+//* MEDIA QUERIES -BREAK POINTS- FOR PAGE

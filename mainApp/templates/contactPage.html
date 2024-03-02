@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+    
+
+{% block body %}
+    <main id="content">
+
+        <div id="contact-form-area">
+            <!-- info area start -->
+            <div class="contact-info">
+                <div class="title">
+                    <h2 class="text">iletisim bilgileri</h2>
+                    <ul class="info">
+                        <li class="info-list">
+                            <span class="icon"><img src="{% static 'img/location.png' %}" alt=""></span>
+                            <span class="text-info">Beyazit Mahallesi<br>34126 Fatih/İstanbul</span>
+                        </li>
+                        <li class="info-list">
+                            <span class="icon"><img src="{% static 'img/mail.png' %}" alt=""></span>
+                            <span class="text-info">lorem@ipsum.com.tr</span>
+                        </li>
+                        <li class="info-list">
+                            <span class="icon"><img src="{% static 'img/call.png' %}" alt=""></span>
+                            <span class="text-info">0(216)123 45 67</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- info area end -->
+            <!-- form area start -->
+            <div class="contact-form">
+                <h2 class="text">Bize Yaz...</h2>
+                <form method="POST" class="contactForm">
+                    {% csrf_token %}
+                    <div class="inputBox w50">
+                        <input type="text" name="f-name" id="f-name" required>
+                        <span class="inp-label">Adiniz</span>
+                    </div>
+                    <div class="inputBox w50">
+                        <input type="text" name="l-name" id="l-name" required>
+                        <span class="inp-label">Soy Adiniz</span>
+                    </div>
+                    <div class="inputBox w50">
+                        <input type="email" name="email" id="email" required>
+                        <span class="inp-label">E-Posta Adresi</span>
+                    </div>
+                    <div class="inputBox w50">
+                        <input type="number" name="phone" id="phone" required>
+                        <span class="inp-label">Telefon Numarasi</span>
+                    </div>
+                    <div class="inputBox w100">
+                        <textarea type="text" name="message" maxlength="250" required></textarea>
+                        <span class="inp-label">Notunuz :</span>
+                    </div>
+                    <div class="inputBox w100">
+                        <input type="submit" id="contact-submit" value="GONDER">
+                    </div>
+                </form>
+            </div>
+            <!-- form area end -->
+        </div>
+
+    </main>
+{% endblock body %}
+     
+    
+    

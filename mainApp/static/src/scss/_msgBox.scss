@@ -1,0 +1,45 @@
+.msgBox
+{
+    position: absolute;
+    display: flex;
+    gap: 1rem;
+    align-self: baseline;
+    justify-self: end;
+    align-items: center;
+
+    @include glassmorphismContent(rgb(white,.1),2.5rem, (.1rem,.1rem,.3rem, rgb(black,.1)));
+    @include makeBorder(0,solid,.1rem, var(--header-bg));
+
+    padding: 1rem;
+    width: 29rem;
+    animation: breathe 15s ease-in-out 10s forwards;
+
+    .msgBox-img
+    {
+        display: flex;
+        max-width: 5rem;
+    }
+
+    .msgBox-msg
+    {
+        display: flex;
+        width: 100%;
+        font-size: var(--small-fs);
+    }
+
+    @keyframes breathe
+    {
+        0% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.5;
+          transform: scale(1.05);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(1.1);
+        }
+    }
+}

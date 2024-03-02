@@ -1,0 +1,84 @@
+#modal
+{
+    //? variables ?//
+    $base-color: map-get($logRegForm-color, 'electric-blue');
+    $secondary-color: map-get($logRegForm-color, 'rich-black');
+    $text-color: map-get($logRegForm-color, 'text-color-clr');
+    $text-color-warn: map-get($neon-colors, 'neon-yellow');
+    $text-color-danger: map-get($neon-colors, 'neon-red');
+    $text-color-input: map-get($neon-colors, 'neon-blue');
+    $input-h   : calc(5rem * var(--scale-factor));
+    $transition-inp : .7s;
+    $transition-delay : .5s;
+    $glass-color-black: map-get($logRegForm-color, 'black-glass'); 
+    $glass-color-white-1: map-get($logRegForm-color, 'white-glass'); 
+    $glass-color-white-2: map-get($logRegForm-color, 'white-glass-2'); 
+    $glass-color-white-3: map-get($logRegForm-color, 'white-glass-3'); 
+    //? variables ?//
+
+
+    width: clamp(30rem, 30%, 40rem);
+    min-height: 30dvh;
+    position: absolute;
+    @include makeFlex(column,2,1);
+    padding: 2rem;
+
+    @include centerElement((center, center));
+    @include makeBorderEach((.1rem,.1rem,.1rem,.1rem),(solid,solid,solid,solid),($glass-color-white-2,$glass-color-white-1,$glass-color-white-1,$glass-color-white-2),(1rem,1rem,1rem,1rem));
+    @include glassmorphismContent(rgba(black, 0.9), 0 rem, (0,2.5rem,4.5rem,$glass-color-black));
+
+    &>*
+    {
+        width: 100%;
+        font-size: var(--medium-fs);
+        flex: auto;
+        
+        input 
+        {
+            width: 80%;
+            padding-block: .5rem;
+            padding-inline: 2rem 1rem;
+            color: $text-color-input;
+            border-radius: 1rem;
+        }
+    }
+
+    .form-area
+    {
+        form 
+        {
+            width: 100%;
+            padding-block: 1rem;
+            @include makeFlex(column,1,1);
+        }
+    }
+    
+    .btn-area
+    {
+        @include makeFlex(row,1,1,2rem);
+
+        button 
+        {
+            padding: .5rem;
+            cursor: pointer;
+        }
+
+    }
+
+    .errorDiv
+    {
+        position: absolute;
+        @include centerElement((center,center));
+        width: 95%;
+        height: 95%;
+        @include makeFlex(row,1,1);
+        border: .2rem solid $text-color-danger;
+        border-radius: calc(1rem - .3rem);
+        background-color: rgba(black, 0.8);
+        text-align: center;
+        font-size: var(--huge-fs);
+        text-transform: uppercase;
+        color: red;
+        backdrop-filter: blur(.25rem);
+    }
+}

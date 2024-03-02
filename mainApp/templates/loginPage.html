@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block body %}
+    <main id="content">
+        <!-- login&register form start -->
+        <div id="wrapper-logRegFrom">
+            <!-- background colors start -->
+            <span class="color"></span>
+            <span class="color"></span>
+            <span class="color"></span>
+            <!-- background colors end -->
+            <!-- login-form area start -->
+            <div class="form-box login">
+                <h2 class="title">Login</h2>
+                <form id="login" class="form enter" novalidate>
+                    <div class="input-box">
+                        <input class="inp" type="text" name="username" required>
+                        <span class="label">Username</span>
+                        <ion-icon class="form-icon" name="person"></ion-icon>
+                    </div>
+                    <div class="input-box">
+                        <input class="inp" type="password" name="password" id="password" required>
+                        <span class="label">Password</span>
+                        <ion-icon class="form-icon" name="lock-closed"></ion-icon>
+                    </div>
+                    <button type="submit" class="btn">Login</button>
+                    <div class="logreg-link">
+                        <p>Don't have an account? <a href="{% url 'registerPage' %}" class="register-link">Register now!</a></p>
+                        <p><a href="#" class="forget-link">Forget My Password </a></p>
+                    </div>
+                </form>
+            </div>
+            <!-- login-form area end -->
+        </div>
+        <!-- login&register form end -->
+    </main>
+{% endblock body %}
+    
+    
+
+{% block javaScript %}
+    <!-- cusctomized scripts -->
+    <script> 
+        var csrfToken = "{{ csrf_token }}"; 
+    </script>
+    <script type="module" src="{% static '/src/js/logRegFrom.js' %}"></script>
+    <!-- cusctomized scripts -->
+{% endblock javaScript %}
+    
+    

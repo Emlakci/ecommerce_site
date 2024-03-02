@@ -1,0 +1,88 @@
+.productNav
+{
+    grid-column: 1 / -1;
+    width: 100%;
+    height: 100%;
+
+    //? variable
+    $link-width : calc(var(--medium-fs) * 8);
+    $base-bg-clr : map-get($logRegForm-color, 'black-glass');
+    $base-border-clr : map-get($logRegForm-color, 'white-glass');
+    $shadow-blur : map-get($logRegForm-color , 'electric-blue');
+    //? variable
+
+    @include makeFlex(row,4,1,.5rem,wrap);
+
+    .category
+    {
+        @include makeFlex(row,4,1);
+
+        .category-link
+        {
+            padding: .5rem;
+            width: $link-width;
+            text-align: center;
+            text-decoration: none;
+            font-size: var(--small-fs);
+            text-transform: uppercase;
+            @include makeBorder(0,solid,.3rem,$base-border-clr,1rem);
+            background: $base-bg-clr;
+            transition: all .5s ease-in;
+
+            &:hover
+            {
+                background: $base-border-clr;
+                border-color: $base-bg-clr;
+                color: black;
+                font-weight: 600;
+                transform: scale(.9);
+                filter: drop-shadow(0 0 .1rem $shadow-blur);
+            }
+        }
+    }
+
+    .finding-space
+    {
+        width: clamp(32rem, 100%, max-content);
+        height: 4rem;
+        @include makeFlex(row,2,1,0.5rem);
+        
+        &>*
+        {
+            @include makeBorder(0,solid,.3rem,$base-border-clr,1rem);
+            transition: all .5s ease-out;
+            box-shadow: inset .1rem .1rem .8rem $shadow-blur;
+            background: $base-bg-clr;
+            padding: .5rem;
+
+            &:focus,
+            &:hover
+            {
+                box-shadow: none
+            }         
+        }
+        
+        #find
+        {
+            font-size: var(--medium-fs);
+            
+        }
+
+        .btn
+        {
+            display: flex;
+            height: 100%;
+            aspect-ratio: .8/1;
+            padding: .3rem;
+            cursor: pointer;
+            
+            .icons
+            {
+                width: 100%;
+                height: 100%;
+                color: var(--text-header);
+                font-size: var(--large-fs);
+            }   
+        }
+    }
+}

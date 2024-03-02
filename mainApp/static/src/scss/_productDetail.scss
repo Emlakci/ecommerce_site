@@ -1,0 +1,276 @@
+#product-detail
+{
+    grid-column: r-side-start / l-side-end;
+    width: 100%;
+    min-height: 100dvh;
+
+    display: grid;
+    @include gridPlaceStyling(1,2,(0,0),.5rem);
+
+    grid-template-columns: minmax(22.5rem, .75fr) minmax(30rem, 1.5fr);
+    grid-auto-rows: min-content;
+    grid-template-areas: 
+        'p-img-1 p-info'
+        'p-detail p-img-2'
+        'p-comment p-comment';
+    
+    //? variable
+    $base-color: var(--text-header);
+    $card-bg-clr : map-get($logRegForm-color, 'black-glass');
+    $changed-color: map-get($navbar-colors, 'nav-icn-2');
+    $card-border-clr : map-get($logRegForm-color, 'white-glass');
+    $card-border-clr-2 : map-get($logRegForm-color, 'white-glass-2');
+    $card-border-clr-3 : map-get($logRegForm-color, 'white-glass-3');
+    $card-border-rds : .3rem;
+    $text-warn : map-get($neon-colors,'neon-red');
+    $text-yellow : map-get($neon-colors,'neon-yellow');
+    $text-title : map-get($logRegForm-color, 'electric-blue');
+    $base-padding : .1rem;
+    //? variable
+    //+ local class +//
+    %glassContent
+    {
+        @include glassmorphismContent($card-border-clr-3, 5rem, (0,2.5rem,4.5rem,$card-bg-clr));
+        @include makeBorderEach((.1rem,.1rem,.1rem,.1rem),(solid,solid,solid,solid),($card-border-clr-2,$card-border-clr,$card-border-clr,$card-border-clr-2),($card-border-rds,$card-border-rds,$card-border-rds,$card-border-rds));
+    }
+    %text
+    {
+        font-size: var(--huge-fs);
+        font-weight: 700;
+        text-transform: capitalize;
+    }
+    //+ local class +//
+
+        
+    .p-img
+    {
+        @include placeItemInGrid(p-img-1,1,2);
+        width: clamp(25rem, 100%, 30rem);
+    }
+    
+    .p-info
+    {
+        @include placeItemInGrid(p-info,1,1);
+        @extend %glassContent;
+
+        @include makeFlex(column,2,5);
+        width: 100%;
+        height: 100%;
+
+        .title
+        {
+            display: flex;
+            justify-content: space-around;
+            @extend %text;
+            padding: calc($base-padding * 3);
+            
+        }
+
+        .defination
+        {
+            font-size: var(--medium-fs);
+            @extend %first-letter-big;
+            @extend %text-indent;
+        }
+
+        .buttons
+        {
+            @include makeFlex(row,4,1,0,wrap);
+
+            .btn
+            {
+                width: min(calc(var(--medium-fs) * 10), calc(50% - 2rem));
+                padding: calc($base-padding * 5);
+                @include makeBorder(0,solid,.3rem,var(--main-bg),1rem);
+                box-shadow: inset .1rem .2rem .3rem -.11rem $base-color;
+                @extend %text;
+                font-size: var(--medium-fs);
+                filter: drop-shadow(0 0 .2rem $base-color);
+                transition: all 1.2s ease-in-out;
+                cursor: pointer;
+               
+                &:hover
+                {
+                    transform: scale(.95);
+                    color: $changed-color;
+                }
+            }
+        }
+        .price-rate
+        {
+            @include makeFlex(row,5,1);
+            padding-inline: calc($base-padding * 10);
+            padding-block: calc($base-padding * 5);
+
+            .grey // for rating value
+            {
+                color: grey;
+            }
+            
+            &>*
+            {
+                @include makeFlex(row,4,1);
+                height: 100%;
+                padding: calc($base-padding * 3);
+                
+                @extend %text;
+            }
+            
+            .price
+            {
+                color: $text-warn;
+            }
+            
+            .rate
+            {
+                color: $text-yellow;
+            }
+            
+            
+            
+        }
+
+    }
+
+    .extra-info
+    {
+        grid-column: 1/ -1;
+        @extend %glassContent;
+        @include makeFlex(row,4,1,null,wrap-reverse);
+
+        .img-detail // img-2
+        {
+            display: flex;
+            width: clamp(15rem, 15%, 20rem);
+            align-self: start;
+        }
+
+        .p-detail
+        {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+            width: clamp(30rem,60%,100%);
+            padding: 2rem;
+
+            .detail-title
+            {
+                display: flex;
+                justify-content: flex-start;
+                @extend %text;
+                color: $text-title;
+                padding: calc($base-padding * 3);
+            }
+        
+            .extras
+            {
+                font-size: var(--small-fs);
+                @extend %text-indent;
+        
+            }
+
+        }
+
+        
+
+
+    }
+
+    .comments
+    {
+        grid-column: 1/-1;
+        width: 100%;
+
+        @include makeFlex(column,1,1,2rem);
+        @include makeBorder(2,solid,.5rem,#ffff,0);
+
+        margin-top: calc($base-padding * 9);
+
+        .comment-title
+        {
+            color: $base-color;
+            @extend %text;
+            align-self: first baseline;
+        }
+
+        #comment
+        {
+            @include makeFlex(row,5,1);
+            align-self: flex-start;
+            width: clamp(30rem,90%,55rem);
+
+            .p-img
+            {
+                width: clamp(4rem,10%,6rem);
+                clip-path: circle(50%);
+            }
+            
+            .input
+            {
+                width: 100%;
+                padding: calc($base-padding * 5);
+
+                .w100
+                {
+                    color: $text-title;
+                    width: 100%;
+                    resize: none;
+                }
+
+                .w50
+                {
+                    width: max(7rem,20%);
+                    cursor: pointer;
+
+                    &:hover
+                    {
+                        color: $text-title;
+                    }
+                }
+            }
+        }
+
+        .user-comments
+        {
+            @include makeFlex(column,2,2,1.5rem);
+            padding: calc($base-padding * 5);
+
+            &>*
+            {
+                @extend %glassContent; 
+            }
+
+            .posts 
+            {
+                position: relative;
+                width: 100%;
+                @extend %text-indent;
+                font-size: var(--small-fs);
+                padding-bottom: calc($base-padding * 20);
+            }
+            
+            .text-date
+            {
+                position: absolute;
+                right: calc($base-padding * 5);
+                bottom: calc($base-padding * 2);
+                font-size: var(--xsmall-fs);
+                align-self: self-end;
+            }
+        }
+    }
+    
+
+
+    //+ MEDIA QUERIES +//
+    @media screen and (max-width : 768px) 
+    {
+        grid-template-columns: minmax(22.5rem, 1fr);
+        grid-template-areas: 
+        'p-img-1'
+        'p-info'
+        'p-img-2'
+        'p-detail'
+        'p-comment';
+    }                 
+}

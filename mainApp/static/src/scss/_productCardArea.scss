@@ -1,0 +1,288 @@
+.product-cards
+{
+    grid-row: 3;
+    grid-column: 1/-1;
+    width: 100%;
+    
+    //? variable
+    $column-width : 20rem;
+    $row-height : calc($column-width * 1.6);
+    $card-border-rds : 1rem;
+    $product-imgBox-h : calc($column-width * 1.2);
+    $action-icon-w : 4rem;
+    $area-gap : 1rem;
+    $base-padding-value : 1rem;
+    $card-bg-clr : map-get($logRegForm-color, 'black-glass');
+    $card-border-clr : map-get($logRegForm-color, 'white-glass');
+    $card-border-clr-2 : map-get($logRegForm-color, 'white-glass-2');
+    $card-border-clr-3 : map-get($logRegForm-color, 'white-glass-3');
+    $text-clr-1 : map-get($logRegForm-color, 'text-color-clr');
+    $text-clr-2 : map-get($logRegForm-color, 'rich-black');
+    $text-clr-3 : map-get($logRegForm-color , 'electric-blue');
+    //? variable
+    //+ local class +//
+    %glassContent
+    {
+        @include glassmorphismContent($card-border-clr-3, 5rem, (0,2.5rem,4.5rem,$card-bg-clr));
+        @include makeBorderEach((.1rem,.1rem,.1rem,.1rem),(solid,solid,solid,solid),($card-border-clr-2,$card-border-clr,$card-border-clr,$card-border-clr-2),($card-border-rds,$card-border-rds,$card-border-rds,$card-border-rds));
+    }
+    %product-area-title
+    {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding-block: calc(($base-padding-value) / 2);
+        padding-inline-start: calc(($base-padding-value) * 5);
+        font-size: var(--giant-fs);
+        text-transform: uppercase;
+        line-height: 4rem;
+        font-weight: 700;
+        letter-spacing: .2rem;
+    }
+    %card-area
+    {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    %card
+    {
+        position: relative;
+        width: min(100%, 22.5rem);
+        height: $row-height;
+        padding: calc($base-padding-value / 3.3);
+        @extend %glassContent;
+
+        .imgBox
+        {
+            position: relative;
+            height: $product-imgBox-h;
+            border-radius: calc($card-border-rds - ($base-padding-value / 3.3));
+            overflow: hidden;
+            border: 2px solid black;
+            display:flex;
+
+            .product-img
+            {
+                width: 100%;
+                transition: .5s ease-in-out;
+                transform-origin: right bottom;
+            }
+
+            .action-menu // ul //
+            {
+                position: absolute;
+                top: 10%;
+                right: 5%;
+                list-style: none;
+                color: black;
+
+                .action-icons // li //
+                {
+                    position: relative;
+                    width: calc($column-width / 5);
+                    aspect-ratio: 1 / 1;
+                    font-size: var(--large-fs);
+
+                    @include makeFlex(row,1,1,0);
+                    @extend %glassContent;
+
+                    margin: .5rem;
+                    cursor: pointer;
+
+                    transform: translateX(6rem);
+                    transition: transform .5s ease-in-out;
+                    transition-delay: calc(var(--trans-delay) * .2s);
+
+                    &:hover
+                    {
+                        background: map-get($neon-candy, 'candy-blue');
+                        color:$text-clr-1;
+
+                        span 
+                        {
+                            opacity: 1;
+                            transform: translateX(0) translateY(-50%);
+                        }
+                    }
+                }
+
+                span 
+                {
+                    position: absolute;
+                    top: 50%;
+                    right: 110%;
+                    transform: translateX(-2rem) translateY(-50%);
+
+                    color: $text-clr-1;
+                    text-transform: capitalize;
+                    font-size: var(--xsmall-fs);
+                    white-space: nowrap;
+                    padding-block: calc($base-padding-value / 2);
+                    padding-inline: calc($base-padding-value * 2);
+                    border-radius: calc($card-border-rds / 2);
+                    background: rgba($text-clr-2, .7);
+                    pointer-events: none;
+                    opacity: 0;
+                    transition: all .5s ease-in;
+                }
+
+            }
+
+            &:hover
+            {
+                .product-img
+                {
+                    transform: scale(1.5);
+                }
+
+                .action-menu
+                {
+                    .action-icons
+                    {
+                        transform: translateX(0);
+                    }
+                }
+            }
+        }
+
+        .content
+        {
+            padding-inline: calc($area-gap / 2);
+    
+            %text
+            {
+                font-size: var(--small-fs);
+                font-weight: 700;
+            }
+    
+            .product-name
+            {
+                .name
+                {
+                    @extend %text;
+                    text-transform: capitalize;
+                    color: $text-clr-3;
+                    margin-block: .5rem;
+                }
+            }
+                
+            .price-rate
+            {
+                @include makeFlex(row,5,1,0);
+    
+                .price
+                {
+                    @extend %text;
+                    font-size: calc(var(--large-fs) + .3rem);
+                    color: map-get($neon-colors, 'neon-red');
+                }
+    
+                .rate
+                {   
+                    @extend %text;
+                    font-size: var(--medium-fs);
+                    color: map-get($neon-colors, 'neon-yellow') ;
+                    cursor: pointer;
+    
+                    .grey
+                    {
+                        color: grey;
+                    }
+                }
+            }
+        }
+    }
+    //+ local class +//
+
+    display: grid;
+    grid-template-columns: auto-fit;
+    grid-template-rows: 
+                    calc($column-width / 5)
+                    auto;
+    grid-template-areas:
+        'area-title-1'
+        'card-area-1'
+        'area-title-2'
+        'card-area-2'
+        'area-title-3'
+        'card-area-3';
+
+    @include gridPlaceStyling(1,null,(null,null),$area-gap);
+                        
+    position: relative;
+    width: 100%;
+
+    .discounted-product-title
+    {
+        grid-area: area-title-1;
+
+        @extend %product-area-title;
+    }
+
+    .discounted-product-cards
+    {
+        grid-area: card-area-1;
+       
+        @extend %card-area;
+        @include gridPlaceStyling(1,null,(null,null),$area-gap);
+        
+        
+        .discounted-product
+        {
+            @extend %card;
+        }
+    }
+
+    .freecargo-product-title
+    {
+        grid-area: area-title-2;
+
+        @extend %product-area-title;
+    }
+    
+    .freecargo-product-cards
+    {
+        grid-area: card-area-2;
+        
+        @extend %card-area;
+        @include gridPlaceStyling(1,null,(null,null),$area-gap);
+        
+        .freecargo-product
+        {
+            @extend %card;
+        }
+    }
+
+    .bestseller-product-title
+    {
+        grid-area: area-title-3;
+
+        @extend %product-area-title;
+    }
+    
+    .bestseller-product-cards
+    {
+        grid-area: card-area-3;
+        
+        @extend %card-area;
+        @include gridPlaceStyling(1,null,(null,null),$area-gap);
+        
+        .bestseller-product
+        {
+            @extend %card;
+        }
+    }
+
+
+
+
+
+    @media screen and (max-width : 786px) 
+    {
+        .product-area-title
+        {
+            padding-inline-start: calc(($base-padding-value) * 1) ;
+        }     
+    }
+}

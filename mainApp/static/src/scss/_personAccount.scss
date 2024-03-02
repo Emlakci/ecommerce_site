@@ -1,0 +1,118 @@
+#person-account
+{    
+    //? variables ?//
+    $base-color: map-get($logRegForm-color, 'electric-blue');
+    $secondary-color: map-get($logRegForm-color, 'rich-black');
+    $card-bg-clr : map-get($logRegForm-color, 'black-glass');
+    $card-border-clr : map-get($logRegForm-color, 'white-glass');
+    $card-border-clr-2 : map-get($logRegForm-color, 'white-glass-2');
+    $card-border-clr-3 : map-get($logRegForm-color, 'white-glass-3');
+    $card-border-rds : 1rem;
+    $text-color: map-get($logRegForm-color, 'text-color-clr');
+
+    //? variables ?//
+
+    //+ local class +//
+    %glassContent
+    {
+        @include glassmorphismContent($card-border-clr-3, 5rem, (0,2.5rem,4.5rem,$card-bg-clr));
+        @include makeBorderEach((.1rem,.1rem,.1rem,.1rem),(solid,solid,solid,solid),($card-border-clr-2,$card-border-clr,$card-border-clr,$card-border-clr-2),($card-border-rds,$card-border-rds,$card-border-rds,$card-border-rds));
+    }
+    //+ local class +//
+
+
+    grid-column: main-content-start / main-content-end;
+
+    .form-title
+    {
+        font-size: var(--huge-fs);
+        font-weight: 900;
+        text-transform: capitalize;
+        text-decoration: underline;
+        letter-spacing: .1rem;
+        margin-bottom: .5rem;
+    }
+
+    #acount-form
+    {
+        @include makeFlex(row,4,1,2rem,wrap);
+        @extend %glassContent;
+        padding-block: 2rem;
+        padding-inline: 1rem;
+
+        &>*
+        {
+            // border: 2px solid red;
+            
+            padding: 1rem;
+            font-size: var(--medium-fs);
+            flex-grow: 1;
+        }
+        
+        label
+        {
+            display: flex;
+            justify-content: space-between;
+            
+            .form-icon
+            {
+                font-size: var(--huge-fs);
+                color: $base-color;
+                transition: all 5ms ease-in-out;
+                cursor: pointer;
+
+                &:hover
+                {
+                    color: $secondary-color;
+                    font-size: calc(var(--huge-fs) * 1.2);
+                }
+            }
+        }
+        
+        .ac-input
+        {
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            border-bottom: .2rem solid $text-color;
+            font-size: var(--medium-fs);
+            font-weight: 500;
+            padding-inline: 1rem;
+            padding-block: .5rem;
+            margin-top: 1rem;
+        }
+
+        .p-img-box
+        {
+            @include makeBorder(0,solid,.1rem,$base-color);
+            @include makeFlex(column,4,1,1rem);
+            flex-direction: column-reverse;
+            flex: none;
+            min-width: 6rem;
+            width: max-content;
+            padding: .5rem;
+
+            .p-img
+            {
+                @include makeBorder(0,solid,.3rem,$secondary-color, .5rem);
+                width: 5rem;
+                aspect-ratio: 1 / 1;
+                object-position: center;
+                object-fit: fill;   
+            }
+
+            input
+            {
+                display: none;
+            }
+        }
+
+        .password
+        {
+            flex: none;
+        }
+        
+    }
+}

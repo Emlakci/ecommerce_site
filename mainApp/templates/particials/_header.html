@@ -1,0 +1,72 @@
+{% load static %}
+
+<header class="container-grid">
+    <!-- logo pic start -->
+    <div class="container-logo">
+        <a href="/">
+            <div class="circle-logo">
+                <div class="logo-profile"></div>
+                <div class="circle-animated-text">
+                    <p id="animated-text"></p> 
+                    <!-- Welcome guest. Please Signup or Login  -->
+                </div>
+            </div>
+        </a>
+    </div>
+    <!-- logo pic end -->
+    <!-- navBar start -->
+    <nav class="navBar">
+        <ul class="menu-list">
+            <li class="menu-icon"><a href="/" class="menu-link"><ion-icon class="icons" name="home" style="--spc-color:#FFD23F"></ion-icon><text>home</text></a></li>
+            <li class="menu-icon"><a href="#" class="menu-link"><ion-icon class="icons" name="information-circle" style="--spc-color:#CEFF1A"></ion-icon><text>about</text></a></li>
+            <li class="menu-icon"><a href="{% url 'contactPage' %}" class="menu-link"><ion-icon class="icons" name="mail-unread" style="--spc-color:#CB48B7"></ion-icon><text>contact</text></a></li>
+            {% if request.user.is_authenticated %}
+            <li class="menu-icon"><a href="{% url 'accountPage' %}" class="menu-link"><ion-icon class="icons" name="person" style="--spc-color:#9E0059"></ion-icon><text>profile</text></a></li>
+            {% endif %}
+                
+            <!-- <div id="indicator"><span id="marker"></span></div> -->
+        </ul>
+    </nav>
+    <nav class="hamburger-menu" id="hamburger-menu">
+        <ion-icon class="icons" name="menu-outline"></ion-icon>
+        <div class="hmbrgr">
+            <ul class="menu-list">
+                <li class="menu-icon"><a href="#" class="menu-link"><ion-icon class="icons" name="home"></ion-icon><text>home</text></a></li>
+                <li class="menu-icon"><a href="#" class="menu-link"><ion-icon class="icons" name="information-circle"></ion-icon><text>about</text></a></li>
+                <li class="menu-icon"><a href="#" class="menu-link"><ion-icon class="icons" name="mail-unread"></ion-icon><text>contact</text></a></li>
+                <li class="menu-icon"><a href="#" class="menu-link"><ion-icon class="icons" name="person"></ion-icon><text>profile</text></a></li>
+                <li class="menu-icon"><a href="{% url 'loginPage' %}" class="menu-link"><ion-icon class="icons" name="key"></ion-icon><text>log in</text></a></li>
+                <li class="menu-icon"><a href="{% url 'registerPage' %}" class="menu-link"><ion-icon class="icons" name="person-add"></ion-icon><text>register</text></a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- navBar end -->
+    <!-- login/signup buttons start -->
+    <div class="buttons-grid">
+        {% if request.user.is_authenticated %}
+            
+            {% if user.customuser.profile_img %}
+                <button type="button" class="buttons" id="person-button">
+                    <img src="{{ user.customuser.profile_img.url }}" class="acount-img" id="person-img" alt="">
+                </button>
+                {% else %}
+                <button type="button" class="buttons" id="person-button">
+                    <img src="{% static '/img/avatar.png' %}" class="acount-img" id="person-img" alt="">
+                </button>
+            {% endif %}
+                
+        
+        <div class="person-menu" id="person-menu">
+            <ul class="person-menu-link">
+                <li><a href="{% url 'userPage' %}"></a></li>
+                <li><a href="{% url 'accountPage' %}">Kişisel Bilgilerim</a></li>
+                <li><a href="{% url 'logout' %}">Güvenli Çıkış</a></li>
+            </ul>
+        </div>
+        {% else %}
+        <a href="{% url 'loginPage' %}" class="buttons"><ion-icon class="acount-icn" name="key"></ion-icon><text>login</text></a>
+        <a href="{% url 'registerPage' %}" class="buttons"><ion-icon class="acount-icn" name="person-add"></ion-icon><text>signup</text></a>
+        {% endif %}
+    </div>
+    <!-- login/signup buttons end -->
+</header>

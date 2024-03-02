@@ -1,0 +1,129 @@
+//? gridarea placed function
+@mixin placeItemInGrid($area-name, $horizontal, $vertical)
+{
+    $positions : (
+        1 : center,
+        2 : flex-start,
+        3 : flex-end,
+    );
+
+    grid-area: $area-name;
+    justify-self: map-get($positions, $horizontal);
+    align-self: map-get($positions, $vertical);
+};
+
+//? grid area properties
+@mixin gridPlaceStyling($horizontal,$vertical,$padding:($inline, $block),$gap:null)
+{
+    $positions : (
+        1 : center,
+        2 : flex-start,
+        3 : flex-end,
+    );
+
+    gap: $gap;
+    padding-inline: nth($padding,1);
+    padding-block: nth($padding,2);
+    justify-items: map-get($positions, $horizontal);
+    align-items: map-get($positions, $vertical);
+};
+
+//? flex-container function
+@mixin makeFlex($direction:row, $horizontal, $vertical, $gap:1rem, $wrap:nowrap)
+{
+    $positions : (
+        1 : center,
+        2 : flex-start,
+        3 : flex-end,
+        4 : space-around,
+        5 : space-between,
+    );
+
+    display: flex;
+    flex-direction: $direction;
+    justify-content: map-get($positions, $horizontal);
+    align-items: map-get($positions, $vertical);
+    gap: $gap;
+    flex-wrap: $wrap;
+};
+
+//? border for elements
+@mixin makeBorder($type:0, $style:solid, $width:.1rem, $color, $radius:1rem)
+{
+    $place : (
+        0 : '',
+        1 : '-left',
+        2 : '-top',
+        3 : '-bottom',
+        4 : '-right'
+    );
+
+    border#{map-get($place, $type)} : {
+        width : $width;
+        style : $style;
+        color : $color;
+    }
+    border-radius: $radius;
+};
+
+//? border for elements each side
+@mixin makeBorderEach($widths:($top,$right,$bottom,$left),$style:($top,$right,$bottom,$left),$color:($top,$right,$bottom,$left),$radius:($t-right,$b-right,$b-left,t-left))
+{
+    border: {
+        top: nth($widths,1) nth($style,1) nth($color,1);
+        right: nth($widths,2) nth($style,2) nth($color,2);
+        bottom: nth($widths,3) nth($style,3) nth($color,3);
+        left: nth($widths,4) nth($style,4) nth($color,4);
+    }
+    border: {
+        top-right-radius: nth($radius,1);
+        bottom-right-radius: nth($radius,2);
+        bottom-left-radius: nth($radius,3);
+        top-left-radius: nth($radius,4);
+    } 
+};
+
+
+//? background colors for soc-media-box for hovering on them
+@mixin social-media-background($social-media)
+{
+    &.#{$social-media} {
+      background: map-get($soc-media-colors, $social-media);
+    }
+};
+
+//? make element look like glass
+@mixin glassmorphismContent($backgroud: rgb(white,.1), $blur:2.5rem, $shadow:($x,$y,$shadow-blur, rgb(black,.1)))
+{
+    background: $backgroud;
+    backdrop-filter: blur($blur);
+    box-shadow: nth($shadow,1) nth($shadow,2) nth($shadow,3) nth($shadow,4)
+};
+
+//? make center element position:absolute inside relative element
+@mixin centerElement($centered:($vertical, $horizontal))
+{
+    @if nth($centered,1) == center and nth($centered,2) == center 
+    {
+        top: 50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+    }
+    @else if nth($centered,1) == center
+    {
+        top: 50%;
+        left: nth($centered,2);
+        transform: translateY(-50%);
+    }
+    @else if nth($centered,2) == center 
+    {
+        top: nth($centered,1);
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    @else
+    {
+        top:nth($centered,1);
+        left: nth($centered,2);
+    };
+}

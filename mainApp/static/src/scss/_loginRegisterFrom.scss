@@ -1,0 +1,276 @@
+#wrapper-logRegFrom
+{
+    //? variables ?//
+    $base-color: map-get($logRegForm-color, 'electric-blue');
+    $secondary-color: map-get($logRegForm-color, 'rich-black');
+    $text-color: map-get($logRegForm-color, 'text-color-clr');
+    $text-color-warn: map-get($neon-colors, 'neon-yellow');
+    $input-h   : calc(5rem * var(--scale-factor));
+    $transition-inp : .7s;
+    $transition-delay : .5s;
+    $glass-color-black: map-get($logRegForm-color, 'black-glass'); 
+    $glass-color-white-1: map-get($logRegForm-color, 'white-glass'); 
+    $glass-color-white-2: map-get($logRegForm-color, 'white-glass-2'); 
+    $glass-color-white-3: map-get($logRegForm-color, 'white-glass-3'); 
+    //? variables ?//
+    //+ local class +//
+
+
+    %error-elements-class
+    {
+        .invalid
+        {
+            color: $text-color-warn;
+            border-color: $text-color-warn !important; 
+        }
+        .message-box
+        {
+            font-size: var(--small-fs);
+            color: $text-color-warn;
+            filter: drop-shadow(0 0 .2rem $text-color-warn);
+        }
+
+    }
+    //+ local class +//
+
+    grid-column: main-content-start / main-content-end;
+
+    @include placeItemInGrid(null,1,2);
+
+    @include makeFlex(row,1,1,0);
+    position: relative;
+    width: 100%;
+    height: 100dvh;
+    background: transparent;
+
+    //*form area background styles start*//
+    .color
+    {
+        position: absolute;
+        filter: blur(8rem);
+        border-radius: 50%;
+
+        &:nth-child(1)
+        {
+            top: 10%;
+            left:30%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 50%;
+            background: map-get($neon-candy, 'candy-red');
+        }
+        &:nth-child(2)
+        {
+            bottom: 0;
+            left: 30%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 50%;
+            background: map-get($neon-candy, 'candy-purple');
+        }
+        &:nth-child(3)
+        {
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            width: 60%;
+            height: 70%;
+            background: map-get($neon-candy, 'candy-blue');
+        }
+    }
+
+    //*form area background styles end*//
+    //*form login styles start*//
+    .form-box
+    {
+        display: grid;
+        
+        position: absolute;
+        width: clamp(32rem, 40%, 80rem);
+        aspect-ratio: .9/1;
+        padding: calc(var(--scale-factor) * 2.5rem);
+        
+
+        @include makeBorderEach((.1rem,.1rem,.1rem,.1rem),(solid,solid,solid,solid),($glass-color-white-2,$glass-color-white-1,$glass-color-white-1,$glass-color-white-2),(1rem,1rem,1rem,1rem));
+        @include glassmorphismContent($glass-color-white-3, 5rem, (0,2.5rem,4.5rem,$glass-color-black));
+
+        transition: all 2s ease-in-out;
+        transition-delay: $transition-delay;
+
+        //* for input's invalid states *//
+        @extend %error-elements-class;
+        //* for input's invalid states *//
+
+        &.login
+        {
+            // display: none;
+        }
+        &.register
+        {
+            .title
+            {
+                margin-bottom: calc(var(--scale-factor) * 2rem);
+            }
+
+            .form
+            {
+                .input-box
+                {
+                    height: calc($input-h / 1.5);
+                    margin-block: calc($input-h / 3);
+                }
+            }
+
+        }
+
+        .title
+        {
+            position: relative;
+            align-self:flex-start;
+            font-size: var(--giant-fs);
+            letter-spacing: .2rem;
+            margin-bottom: calc(var(--scale-factor) * 3rem);
+
+            &::before
+            {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: -1rem;
+                width: calc(var(--giant-fs) * 2);
+                height: .4rem;
+                background: $text-color;
+            }
+        }
+
+        .form
+        {
+            // border: 1px solid red;
+            width: 100%;
+            justify-self: center;
+            align-self: center;
+            .input-box
+            {
+                position: relative;
+                width: 100%;
+                height: $input-h;
+                margin-block: calc($input-h / 2);
+    
+                font-size: var(--large-fs);
+                color: $text-color;
+    
+                & > *
+                {
+                    transition: all $transition-inp;
+                    font-size: var(--large-fs);
+                }
+    
+                .inp
+                {
+                    width: 100%;
+                    height: 100%;
+                    background: transparent;
+                    border: none;
+                    outline: none;
+                    border-bottom: .2rem solid $text-color;
+                    font-weight: 500;
+                    padding-inline: 2rem;
+                    
+    
+                    &:focus,
+                    &:valid
+                    {
+                        border-bottom-color: $base-color;
+                    }
+                    &:focus~.label,
+                    &:valid~.label
+                    {
+                        top: -.5rem;
+                        color: $base-color;
+                    }
+                    &:focus~.form-icon,
+                    &:valid~.form-icon
+                    {
+                        color: $base-color;
+                    }
+                }
+    
+                .label
+                {
+                    position: absolute;
+                    left: 0;
+                    @include centerElement((center,null));
+                    pointer-events: none;
+                }
+    
+                .form-icon
+                {
+                    position: absolute;
+                    right: 0;
+                    @include centerElement((center,null));
+                }
+            }
+    
+            .btn
+            {
+                position: relative;
+                width: 100%;
+                height: calc($input-h - .5rem);
+                background: transparent;
+                border: {
+                    width: .2rem;
+                    style: solid;
+                    color: $base-color;
+                    radius: calc($input-h - 1rem);
+                }
+                outline: none;
+                font-weight: 600;
+                color: $text-color;
+                font-size: var(--large-fs);
+                cursor: pointer;
+                overflow: hidden;
+                z-index: 1;
+    
+                &::before
+                {
+                    content: '';
+                    position: absolute;
+                    top: -100%;
+                    left: 0;
+                    width: 100%;
+                    height: 250%;
+                    background: linear-gradient($secondary-color, $base-color, $secondary-color, $base-color);
+                    transition: all $transition-inp;
+                    z-index: -1;
+                }
+    
+                &:hover::before
+                {
+                    top: 0;
+                }
+            }
+    
+            .logreg-link
+            {
+                @include makeFlex(column,1,1,0);
+                color: $text-color;
+                font-size: var(--small-fs);
+                text-align: center;
+                margin: 2rem 0 1rem;
+    
+                p > a {
+                    color: $base-color;
+                    text-decoration: none;
+                    font-weight: 600;
+    
+                    &:hover
+                    {
+                        text-decoration: underline;
+                    }
+
+                }
+            }
+        }
+    }
+    //*form login styles end*//
+}

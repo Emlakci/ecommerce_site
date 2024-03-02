@@ -1,0 +1,109 @@
+.buttons-grid
+{
+    @include placeItemInGrid(buttons,1,1);     
+    @include makeFlex(row,1,1);
+    position: relative;
+
+    .buttons
+    {
+        
+        @include makeFlex(column,1,1,0);
+        @include makeBorder(0,solid,.3rem,var(--main-bg),1rem);
+        position: relative;
+        padding: 1rem;
+        font-size: var(--medium-fs);
+        text-decoration: none;
+        text-transform: capitalize;
+        color: $base-color;
+        filter: drop-shadow(0 0 .2rem $base-color);
+        box-shadow: inset .1rem .2rem .3rem -.11rem $base-color;
+        transition: all 1.2s ease-in-out;
+
+        .acount-icn
+        {
+            position: absolute;
+            font-size: calc(var(--header-h)/4);
+            color: transparent;
+            transition: all 1.4s ease-in-out ;
+        }
+
+        .acount-img
+        {
+            max-width: calc(var(--header-h) / 3);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all .7s ease-in;
+            transition-delay: .5s;
+
+            &:hover
+            {
+                border-radius: 1rem;
+                transform: scale(1.2);
+            }
+            
+        }
+        
+        &:hover
+        {
+            border-color: $changed-color;
+            color: transparent;
+            transform: scale(.9);
+            filter: drop-shadow(0 0 1rem $changed-color);
+            box-shadow: inset .1rem .2rem .3rem -.11rem $changed-color;
+            
+            .acount-icn
+            {
+                color: map-get($navbar-colors, 'nav-icn');
+                filter: drop-shadow(0 0 .5rem $changed-color);
+            }
+        }
+    }
+
+    .person-menu
+        {
+            display: none;
+            position: absolute;
+            top:100%;
+            right: 5%;
+            width: 15rem;
+            height: auto;
+            padding: .5rem;
+            border: 1px solid var(--header-shadow);
+            background: var(--main-bg);
+            font-size: var(--medium-fs);
+            text-align: center;
+            box-shadow:  .3rem .3rem 1rem var(--header-shadow),
+                        inset .3rem .3rem 1rem var(--header-shadow);
+            transition: all .5s;
+            transition-delay: .5ms;
+            
+            .person-menu-link
+            {
+                list-style: none;
+                
+                & > *
+                {
+                    padding: .5rem;
+                    cursor: pointer;
+                    
+                    a 
+                    {
+                        text-decoration: none;
+                        color: var(--text-header);
+                    }
+
+                    &:hover
+                    {
+                        background: var(--text-header);
+
+                        a
+                        {
+                            color: var(--header-bg);
+                            font-weight: 600;
+                        }
+                    }
+                }
+
+            }
+        }
+}

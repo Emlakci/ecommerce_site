@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- ionicons icons scripts -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- ionicons icons scripts -->
+    <!-- customized css -->
+    <link rel="stylesheet" href="{% static '/src/scss/main.css'%} ">
+    <!-- customized css -->
+</head>
+<body>
+    <!-- header start --> 
+    
+    {% if request.session.visited_home %}
+    
+        {% include 'particials/_header.html' %}
+        
+    {% endif %}
+        
+    <!-- header end -->
+    
+    <!-- content start -->
+    
+    {% block body %}
+    
+    {% endblock body %}
+    
+    <!-- content end -->
+    
+    <!-- footer start -->
+    {% if request.session.visited_home %}
+    
+        {% include 'particials/_footer.html' %}
+        
+    {% endif %}
+    <!-- footer end -->
+
+    
+    <!-- vanilla-tilt scripts -->
+    <script src="{% static '/src/js/vanilla-tilt.min.js' %}"></script>
+    <!-- vanilla-tilt scripts -->
+    <!-- cusctomized scripts -->
+    <script type="module" src="{% static '/src/js/header.js' %}"></script>
+    
+    {% block javaScript%}
+        
+    {% endblock javaScript%}
+        
+    <script src="{% static '/src/js/footer.js'%}"></script>
+    <!-- cusctomized scripts -->
+</body>
+</html>

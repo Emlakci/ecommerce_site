@@ -1,0 +1,89 @@
+.container-logo
+{
+    @include placeItemInGrid(logo,1,1);
+
+    //# span element for animation text placeholder #//
+    %child-span
+    {
+        span
+        {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            font-size: var(--large-fs);
+            font-family: consolas;
+            color: var(--text-header);
+            filter: drop-shadow(0 0 .3rem var(--text-header));
+            transform-origin: 0 calc(var(--header-h)/2);
+        }
+    }
+    //# span element for animation text placeholder #//
+
+
+    .circle-logo
+    {
+        position: relative;
+
+        @include makeFlex (row,1,1,0);
+        width: var(--header-h);
+        aspect-ratio: 1/1;
+        background: var(--main-bg);
+        border-radius: 100vw;
+
+        .logo-profile
+        {
+            position: absolute;
+            width: calc(var(--header-h)*.7);
+            aspect-ratio: 1/1;
+            background : {
+                image : url(../../img/logo.jpg);
+                size: cover;    
+            };
+            border-radius: 50%;
+            // filter: brightness(1.5) contrast(1.5);
+
+        }
+
+        .circle-animated-text
+        {
+            position: absolute;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            animation: rotateText 10s forwards infinite;
+
+            @extend %child-span;
+
+            &:hover
+            {
+                animation: none;
+            }
+        }
+
+    }
+
+    @keyframes rotateText 
+    {
+        0%
+        {
+            transform: rotate(0deg);
+        }
+        25%
+        {
+            transform: rotate(180deg);
+        }
+        50%
+        {
+            transform: rotate(90deg);
+        }
+        75%
+        {
+            transform: rotate(360deg);
+        }
+        100%
+        {
+            transform: rotate(270deg);
+        }
+        
+    }
+}

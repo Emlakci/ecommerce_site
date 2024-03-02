@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block body %}
+     <main id="content">
+
+        <section id="person-account">
+            <h2 class="form-title">Hesap Bilgilerim</h2>
+            <div id="acount-form">
+                <div class="input-box">
+                    <label for="f-name" data-area-name="Isim Guncelleme">Adiniz <ion-icon title="guncelle" class="form-icon" name="repeat-outline"></ion-icon></label>
+                    <input type="text" name="first_name" id="f-name" class="ac-input" value="{{ auth_user.first_name }}" disabled>
+                </div>
+                <div class="input-box">
+                    <label for="l-name" data-area-name="Soyad Guncelleme">Soyadiniz <ion-icon title="guncelle" class="form-icon" name="repeat-outline"></ion-icon></label>
+                    <input type="text" name="last_name" id="l-name" class="ac-input" value="{{ auth_user.last_name }}" disabled>
+                </div> 
+                <div class="input-box">
+                    <label for="username" data-area-name="Kullanici Adi Guncelleme">Kullanici Adi <ion-icon title="guncelle" class="form-icon" name="repeat-outline"></ion-icon></label>
+                    <input type="text" name="username" id="username" class="ac-input" value="{{ auth_user.username }}" disabled>
+                </div>
+                <div class="input-box">
+                    <label for="email" data-area-name="E-mail Adresi Guncelleme">E-mail Adresi <ion-icon title="guncelle" class="form-icon" name="repeat-outline"></ion-icon></label>
+                    <input type="email" name="email" id="email" class="ac-input" value="{{ auth_user.email }}" disabled>
+                </div>
+                <div class="input-box">
+                    <label for="birth" data-area-name="Dogum Tarihi Guncelleme">Dogum Tarihi <ion-icon title="guncelle" class="form-icon" name="repeat-outline"></ion-icon></label>
+                    <input type="date" name="birth_date" id="birth" class="ac-input" value="{{ auth_user.customuser.birth_date|date:'Y-m-d' }}" readonly>
+                </div>
+                <div class="input-box">
+                    <label for="age">Yasiniz</label>
+                    <input type="number" name="age" id="age" class="ac-input" value="{{ auth_user_age }}" disabled>
+                </div>
+                <div class="input-box">
+                    <label for="city" data-area-name="Sehir Guncelleme">Bulundugun Sehir <ion-icon title="guncelle" class="form-icon" name="repeat-outline"></ion-icon></label>
+                    <input type="text" name="city" id="city" class="ac-input" value="{{ auth_user.customuser.city }}" disabled>
+                </div>
+                <div class="input-box password">
+                    <label for="password" data-area-name="Sifre Guncelleme">Sifre <ion-icon title="guncelle" class="form-icon" name="repeat-outline"></ion-icon></label>
+                    <input type="password" name="password" id="password" class="ac-input" value="{{ auth_user.password }}" disabled>
+                </div>
+                <div class="p-img-box">
+                    <img class="p-img" src="{{ auth_user.customuser.profile_img.url }}" alt="" srcset="">
+                    <div class="input-box" data-area-name="Profil Resmi Guncelleme">
+                        <label for="">Profil Resmi <ion-icon title="guncelle" class="form-icon" name="repeat-outline"></ion-icon></label>
+                        <input type="file" name="profile_img" id="p-img-upload">
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        
+    </main>
+{% endblock body %}
+    
+{% block javaScript %}
+    <script>
+        var csrfToken = "{{ csrf_token }}"
+    </script>
+    <!-- cusctomized scripts -->        
+    <script src="{% static 'src/js/modal.js' %}"></script>
+    <!-- cusctomized scripts -->  
+{% endblock javaScript %}
+    

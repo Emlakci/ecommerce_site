@@ -1,0 +1,214 @@
+{% extends 'base.html' %}
+{% load static %}
+    
+
+{% block body %}
+    <main id="content">
+
+        <section id="product-area">
+            <!-- product navBar start -->
+            <div class="product productNav">
+                <div class="category">
+                    <a class="category-link" href="">giyim</a>
+                    <a class="category-link" href="">beyaz esya</a>
+                    <a class="category-link" href="">taki&aksesuar</a>
+                    <a class="category-link" href="">diz ustu bilgisayar</a>
+                </div>
+                <div class="finding-space">
+                    <input type="text" name="find" id="find" placeholder="Ne ariyorsun...">
+                    <button class="btn" type="button"><ion-icon class="icons" name="search"></ion-icon></button>
+                </div>
+            </div>
+            <!-- product navBar end -->
+            <!-- product carousel start -->
+            <div class="wrapper"  id="carousel-wrapper">
+                <div class="carousel-slider" id="slider">
+                    <div class="item">
+                        <img src="{% static 'img/beyaz_esya_1.jpg' %}" alt="" class="img-item"> 
+                    </div>
+                    <div class="item">
+                        <img src="{% static 'img/laptop_monster.png' %}" alt="" class="img-item"> 
+                    </div>
+                    <div class="item">
+                        <img src="{% static 'img/beyaz_esya_1.jpg' %}" alt="" class="img-item"> 
+                    </div>
+                </div>
+                <span class="arrow right">
+                    <ion-icon class="icons" name="chevron-forward-circle-outline"></ion-icon>
+                </span>
+                <span class="arrow left">
+                    <ion-icon class="icons" name="chevron-back-circle-outline"></ion-icon>
+                </span>
+            </div>
+            <!-- product carousel end -->
+            <!-- product cards area start -->
+            <div class="product-cards">
+                <!-- discounted products start  -->
+                <h2 class="discounted-product-title">indirimli urunler</h2>
+                <div class="discounted-product-cards">
+                    {% for product in products %}
+                        {% for special_status in product.p_special_status.all %}
+                            {% if special_status.states == 'discounted product' %}
+                                <div class="discounted-product">
+                                    <div class="imgBox">
+                                        <img src="{{ product.p_img.url }}" alt="" class="product-img">
+                                        <ul class="action-menu">
+                                            <li class="action-icons" style="--trans-delay:1;">
+                                                <a href="#">
+                                                    <ion-icon name="heart"></ion-icon>
+                                                    <span>Add to My Favourites</span>
+                                                </a>
+                                            </li>
+                                            <li class="action-icons" style="--trans-delay:1.4;">
+                                                <a href="#">
+                                                    <ion-icon name="cart-outline"></ion-icon>
+                                                   <span>Add to Cart</span>
+                                                </a>
+                                            </li>
+                                            <li class="action-icons" style="--trans-delay:1.8;">
+                                                <a href="/p-detail/{{ product.id }}/{{ user.id }}">
+                                                    <ion-icon name="eye-outline"></ion-icon>
+                                                    <span>View Details</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="content">
+                                        <div class="product-name">
+                                            <h3 class="name"> {{product.p_name}} </h3>
+                                        </div>
+                                        <div class="price-rate">
+                                            <h2 class="price"> {{product.p_price}}&#8378</h2>
+                                            <div class="rate">
+                                                <ion-icon class="" name="star"></ion-icon>
+                                                <ion-icon class="" name="star"></ion-icon>
+                                                <ion-icon class="" name="star"></ion-icon>
+                                                <ion-icon class="grey" name="star"></ion-icon>
+                                                <ion-icon class="grey" name="star"></ion-icon>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}               
+                        {% endfor %}       
+                    {% endfor %}
+                </div>
+                <!-- discounted products end  -->
+                <!-- free cargo products start  -->
+                <h2 class="freecargo-product-title">kargo bedava</h2>
+                <div class="freecargo-product-cards">
+                    {% for product in products %}
+                        {% for special_status in product.p_special_status.all %}
+                            {% if special_status.states == 'free shipping product' %}
+                                <div class="freecargo-product">
+                                    <div class="imgBox">
+                                        <img src="{{ product.p_img.url }}" alt="" class="product-img">
+                                        <ul class="action-menu">
+                                            <li class="action-icons" style="--trans-delay:1;">
+                                                <a href="#">
+                                                    <ion-icon name="heart"></ion-icon>
+                                                    <span>Add to My Favourites</span>
+                                                </a>
+                                            </li>
+                                            <li class="action-icons" style="--trans-delay:1.4;">
+                                                <a href="#">
+                                                    <ion-icon name="cart-outline"></ion-icon>
+                                                    <span>Add to Cart</span>
+                                                </a>
+                                            </li>
+                                            <li class="action-icons" style="--trans-delay:1.8;">
+                                                <a href="/p-detail/{{ product.id}}/{{ user.id }}">
+                                                    <ion-icon name="eye-outline"></ion-icon>
+                                                    <span>View Details</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="content">
+                                        <div class="product-name">
+                                            <h3 class="name">{{product.p_name}}</h3>
+                                        </div>
+                                        <div class="price-rate">
+                                            <h2 class="price">{{product.p_price}}&#8378</h2>
+                                            <div class="rate">
+                                                <ion-icon class="" name="star"></ion-icon>
+                                                <ion-icon class="" name="star"></ion-icon>
+                                                <ion-icon class="" name="star"></ion-icon>
+                                                <ion-icon class="grey" name="star"></ion-icon>
+                                                <ion-icon class="grey" name="star"></ion-icon>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                            {% endif %}               
+                        {% endfor %}       
+                    {% endfor %}
+                </div>
+                <!-- free cargo products end  -->
+                <!-- best seller products start  -->
+                <h2 class="bestseller-product-title">en cok satanlar</h2>
+                <div class="bestseller-product-cards">
+                    {% for product in products %}
+                        {% for special_status in product.p_special_status.all %}
+                            {% if special_status.states == 'best seller product' %}
+                                <div class="bestseller-product">
+                                    <div class="imgBox">
+                                        <img src="{{ product.p_img.url }}" alt="" class="product-img">
+                                        <ul class="action-menu">
+                                            <li class="action-icons" style="--trans-delay:1;">
+                                                <a href="#">
+                                                    <ion-icon name="heart"></ion-icon>
+                                                    <span>Add to My Favourites</span>
+                                                </a>
+                                            </li>
+                                            <li class="action-icons" style="--trans-delay:1.4;">
+                                                <a href="">
+                                                    <ion-icon name="cart-outline"></ion-icon>
+                                                    <span>Add to Cart</span>
+                                                </a>
+                                            </li>
+                                            <li class="action-icons" style="--trans-delay:1.8;">
+                                                <a href="/p-detail/{{ product.id }}/{{ user.id }}">
+                                                    <ion-icon name="eye-outline"></ion-icon>
+                                                    <span>View Details</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="content">
+                                        <div class="product-name">
+                                            <h3 class="name">{{product.p_name}}</h3>
+                                        </div>
+                                        <div class="price-rate">
+                                            <h2 class="price">{{product.p_price}}&#8378</h2>
+                                            <div class="rate">
+                                                <ion-icon class="" name="star"></ion-icon>
+                                                <ion-icon class="" name="star"></ion-icon>
+                                                <ion-icon class="" name="star"></ion-icon>
+                                                <ion-icon class="grey" name="star"></ion-icon>
+                                                <ion-icon class="grey" name="star"></ion-icon>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}               
+                        {% endfor %}       
+                    {% endfor %}    
+                </div>
+                <!-- best seller products end  -->
+            </div>
+            <!-- product cards area end -->
+        </section>
+    
+    </main>
+{% endblock body %}
+    
+    
+    
+
+{% block javaScript %}
+    <!-- cusctomized scripts -->        
+    <script src="{% static 'src/js/productContent.js' %}"></script>
+    <!-- cusctomized scripts -->  
+{% endblock javaScript %}
+    

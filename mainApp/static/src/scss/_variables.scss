@@ -1,0 +1,56 @@
+//? Font Family
+$font-family : (
+    'fm-hw-1' : unquote("'Dancing Script', cursive"),
+    'fm-hw-2' : unquote("'Tangerine', cursive"),
+    'fm-hw-3' : unquote("'Ballet', cursive"),
+    'fm-2d'   : unquote("'Press Start 2P', system-ui"),
+    'fm-vamp' : unquote("'Bigelow Rules', serif"),
+    'fm-hd-1' : unquote("'Ewert', serif"),
+    'fm-hd-2' : unquote("'Sedgwick Ave Display', cursive"),
+    'fm-icn'  : unquote("'Rubik Maps', system-ui")
+);
+//? Font Family
+
+//? Color Palette
+$navbar-colors : (
+    'nav-bg'    : #0F1F2E,
+    'nav-bg-2'  : #19324D,
+    'nav-icn'   : #FFD23F,
+    'nav-icn-2' : #CEFF1A,
+    'nav-icn-3' : #CB48B7,
+    'nav-icn-4' : #9E0059,
+    'nav-text-p': #19344D,
+    'nav-text-s': #C6C5B9,
+);
+$soc-media-colors : (
+    'facebook'  : #1877F2,
+    'youtube'   : #FF0000,
+    'twitter'   : #0099FF,
+    'instagram' : #E4405F,
+);
+$neon-colors : (
+    
+    'neon-red'      :#FE0000,	
+    'neon-yellow'   :#FDFE02,	
+    'neon-green'    :#0BFF01,	
+    'neon-blue'     :#011EFE,	
+    'neon-pink'     :#FE00F6,
+);
+$neon-candy : ( 
+    'candy-blue'    :#00AAFF,	
+    'candy-purple'  :#AA00FF,	
+    'candy-red'     :#FF00AA,	
+    'candy-orange'  :#FFAA00,	
+    'candy-lime'    :#AAFF00,
+);
+$logRegForm-color : (
+    'electric-blue' : #00EEFF,
+    'rich-black'    : #081B29,
+    'text-color-clr': #FFFEFF,
+    'black-glass'   : rgb(black,.1),
+    'white-glass'   : rgb(white,.2),
+    'white-glass-2' : rgb(white,.5),
+    'white-glass-3' : rgb(white,.1),
+);
+
+//? Color Palette

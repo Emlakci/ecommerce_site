@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+    
+
+{% block body %}
+        <main id="content">
+
+        <section id="product-detail">
+            <div class="p-img">
+                <img src="{{ selected_product.p_img.url }}" alt="">
+            </div>
+            <div class="p-info">
+                <h2 class="title">{{selected_product.p_name}}</h2>
+                <p class="defination">{{ selected_product.p_description }}</p>
+                <div class="buttons">
+                    <button class="btn" id="add-cart" type="button">Sepete Ekle</button>
+                    <button class="btn" id="add-favourite" type="button">Favorilerime Ekle</button>
+                </div>
+                <div class="price-rate">
+                    <h2 class="price">{{ selected_product.p_price }}&#8378</h2>   
+                    <div class="rate">
+                        <ion-icon class="" name="star"></ion-icon>
+                        <ion-icon class="" name="star"></ion-icon>
+                        <ion-icon class="" name="star"></ion-icon>
+                        <ion-icon class="grey" name="star"></ion-icon>
+                        <ion-icon class="grey" name="star"></ion-icon>
+                    </div>
+                </div>
+            </div>
+            <div class="extra-info">
+                <div class="img-detail">
+                    <img src="{{ selected_product.p_img.url }}" alt="">
+                </div>
+                <div class="p-detail">
+                    <h2 class="detail-title">urun aciklamasi</h2>
+                    <p class="extras">{{ selected_product.p_information }}</p> 
+                </div>
+            </div>
+            <div class="comments">
+                <h2 class="comment-title">Degerlendirmeler</h2>
+                <form  method="POST" id="comment">
+                    {% csrf_token %}
+
+                    {% if request.user.is_authenticated %}
+                    <img class="p-img" src="{{ auth_user.customuser.profile_img.url }}" alt="">
+                    {% else %}
+                    <img class="p-img" src="{% static 'img/avatar.png' %}" alt="">
+                    {% endif %}
+                        
+                    <div class="input">
+                        <textarea class="input w100" name="comment" rows="5" maxlength="250" placeholder="Bir seyler yaz..."></textarea>
+                        <button class="input w50" type="submit">GONDER</button>
+                    </div>
+                </form>
+                <div style="min-width: 100%;" class="user-comments">
+                    
+                    {% for post in posts  %}
+                    <p class="posts">{{ post.comment }}<br><small class="text-date">{{ post.user.username }}-{{ post.city }}-{{ post.time_stamp }}</small></p>    
+                    {% endfor %}
+                        
+                </div>
+            </div>
+
+        </section>
+        
+    
+    </main>
+{% endblock body %}
+    
+
+    
+    
+    
+    
+   

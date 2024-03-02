@@ -1,0 +1,81 @@
+.hamburger-menu
+{
+    @include placeItemInGrid(navBar,1,1);
+    
+    @include makeFlex(row,1,1);
+    @include makeBorder(0,solid,.3rem,var(--main-bg),1rem);
+    filter: drop-shadow(0 0 .2rem $base-color);
+
+    position: relative;
+    width: calc(var(--header-h)/3);
+    aspect-ratio: 1/1;
+    transition: all .5s;
+    overflow-x: hidden;
+
+
+    .icons
+    {
+        font-size: var(--huge-fs);
+        transition: all .8s;
+    }
+
+    .hmbrgr
+    {
+        opacity: 0;
+        @include makeBorder(0,solid,.1rem, var(--main-bg), .7rem);
+
+        position: absolute;
+        top: 250%;
+        right: -450%;
+        width: 12rem;
+        transition: all .9s ease-in-out;
+        z-index: 1000;
+        
+        .menu-list
+        {
+            list-style: none;
+            
+            .menu-icon
+            {
+                margin: .5rem;
+                border-radius: .5rem;
+                padding: .3rem;
+                .menu-link
+                {
+                    @include makeFlex(row,2,1,3rem);
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    color: map-get($navbar-colors, 'nav-text-p');
+                }
+
+                &:hover
+                {
+                    background: var(--main-bg);
+                    font-weight: 700;
+
+                    .menu-link
+                    {
+                        color: $changed-color;
+                    }
+                }
+            }
+        }
+    }
+
+    &:hover
+    {
+        border-color: $changed-color;
+        color: $changed-color;
+        transform: scale(1.2);
+        filter: drop-shadow(0 0 1rem $changed-color);
+        box-shadow: inset .1rem .2rem .3rem -.11rem $changed-color;
+        
+        .hmbrgr
+        {
+            opacity: 1;
+            border-color: $changed-color;
+
+            transform: translate(-100%, -20%);
+        }
+    }
+}
