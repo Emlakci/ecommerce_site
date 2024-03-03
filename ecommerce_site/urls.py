@@ -22,7 +22,7 @@ from mainApp.views import *
 from userApp.views import *
 from django.conf.urls import handler404, handler500
 
-# handler404 = error_404
+handler404 = error_404
 
 urlpatterns = [
     path('admin/', admin.site.urls),
